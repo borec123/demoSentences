@@ -7,21 +7,20 @@ import java.io.OutputStreamWriter;
 
 import com.demo.sentence.model.Sentence;
 
+
+/**
+ * Writes Sentences to output stream.
+ */
 public class XMLSentenceWriter implements SentenceWriterInterface {
 
-
-
-	//protected PrintStream printStream;
 	BufferedWriter writer;
 	
 	public XMLSentenceWriter(OutputStream os) {
-		//printStream = new PrintStream(os);
 		writer = new BufferedWriter(new OutputStreamWriter(os));
 	}
 	
 	public void writeSentence(Sentence sentence) throws IOException {
 		
-		//BufferedWriter BufferedWriter = new BufferedWriter(os);
 		writer.write("\t<sentence>\n");
 		sentence.getWords().forEach(w -> {
 			try {
@@ -49,7 +48,5 @@ public class XMLSentenceWriter implements SentenceWriterInterface {
 		writer.close();
 
 	}
-	
-	
 
 }

@@ -4,6 +4,10 @@ import java.io.IOException;
 
 import com.demo.sentence.model.Sentence;
 
+
+/**
+ * Common interface for Sentence writers.
+ */
 public interface SentenceWriterInterface {
 	
 

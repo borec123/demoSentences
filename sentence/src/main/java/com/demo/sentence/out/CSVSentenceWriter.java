@@ -7,7 +7,6 @@ import com.demo.sentence.model.Sentence;
 
 /**
  * TODO implement CSVSentenceWriter.
- *
  */
 public class CSVSentenceWriter implements SentenceWriterInterface {
 

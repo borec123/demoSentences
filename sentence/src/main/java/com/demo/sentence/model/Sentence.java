@@ -2,16 +2,15 @@ package com.demo.sentence.model;
 
 import java.util.List;
 
+/**
+ * domain model class Sentence.java
+ */
 public class Sentence {
 
-	private List<String> words;
+	private final List<String> words;
 
 	public List<String> getWords() {
 		return words;
-	}
-
-	public void setWords(List<String> words) {
-		this.words = words;
 	}
 
 	public Sentence(List<String> words) {
@@ -20,10 +19,7 @@ public class Sentence {
 	}
 
 	private String value() {
-		if(words == null) {
-			return null;
-		}
-		if(words.size() == 0) {
+		if(words == null || words.size() == 0) {
 			return "";
 		}
 		final StringBuilder string = new StringBuilder();
@@ -33,7 +29,6 @@ public class Sentence {
 	
 	@Override
 	public int hashCode() {
-
 		return value().hashCode();
 	}
 
@@ -47,7 +42,6 @@ public class Sentence {
 
 	@Override
 	public String toString() {
-		
 		return value();
 	}
 	

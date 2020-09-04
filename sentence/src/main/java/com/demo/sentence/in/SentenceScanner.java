@@ -10,12 +10,16 @@ import java.util.regex.Pattern;
 
 import com.demo.sentence.model.Sentence;
 
+
+/**
+ * SentenceScanner is reading sentences from input stream or from a String.
+ */
 public class SentenceScanner implements Enumeration<Sentence> {
 
 	private InputStream inputStream;
 	private Scanner mainScanner;
 	private static final String sentence_scanner_pattern = "\\s*!+|\\?+|\\.+\\s*";
-	private static final String word_scanner_pattern = "[\\p{javaWhitespace},()]+";
+	private static final String word_scanner_pattern = "[\\p{javaWhitespace},()-]+";
 
 	public SentenceScanner(String input) {
 		super();
