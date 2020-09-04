@@ -1,35 +1,55 @@
 package com.demo.sentence.out;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 
-public class XMLSentenceWriter extends AbstractSentenceWriter {
+import com.demo.sentence.model.Sentence;
 
+public class XMLSentenceWriter implements SentenceWriterInterface {
+
+
+
+	//protected PrintStream printStream;
+	BufferedWriter writer;
+	
 	public XMLSentenceWriter(OutputStream os) {
-		super(os);
-
+		//printStream = new PrintStream(os);
+		writer = new BufferedWriter(new OutputStreamWriter(os));
 	}
-
-
-	@Override
-	protected String getLine(String word) {
+	
+	public void writeSentence(Sentence sentence) throws IOException {
 		
-		return "\t\t<word>" + word + "</word>";
+		//BufferedWriter BufferedWriter = new BufferedWriter(os);
+		writer.write("\t<sentence>\n");
+		sentence.getWords().forEach(w -> {
+			try {
+				writer.write("\t\t<word>" + w + "</word>\n");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		});
+		writer.write("\t</sentence>\n");
+	}
+
+
+
+	@Override
+	public void writeHeader() throws IOException {
+		writer.write("<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>\n");
+		writer.write("<text>\n");
+
 	}
 
 
 	@Override
-	protected String writeHeader() {
-		printStream.println("<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>");
-		printStream.println("<text>");
-		return null;
-	}
+	public void writeFooterAndClose() throws IOException {
+		writer.write("</text>\n");
+		writer.close();
 
-
-	@Override
-	public String writeFooterAndClose() {
-		printStream.println("</text>");
-		close();
-		return null;
 	}
+	
+	
 
 }

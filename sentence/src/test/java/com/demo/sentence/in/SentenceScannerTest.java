@@ -50,7 +50,6 @@ class SentenceScannerTest {
 		while (sentenceScanner.hasMoreElements()) {
 			Sentence sentence = sentenceScanner.nextElement();
 			list.add(sentence);
-			System.out.println(sentence);
 		}
 		return list;
 	}

@@ -1,31 +1,35 @@
 package com.demo.sentence.out;
 
-import java.io.OutputStream;
+import java.io.IOException;
 
-public class CSVSentenceWriter extends AbstractSentenceWriter {
+import com.demo.sentence.model.Sentence;
+
+
+/**
+ * TODO implement CSVSentenceWriter.
+ *
+ */
+public class CSVSentenceWriter implements SentenceWriterInterface {
 
 
 
-	public CSVSentenceWriter(OutputStream os) {
-		super(os);
-		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	protected String getLine(String word) {
-		throw new RuntimeException("To be implemented...");
-	}
 
 	@Override
-	protected String writeHeader() {
+	public void writeHeader() {
 		// TODO Auto-generated method stub
-		return null;
+
 	}
 
 	@Override
-	protected String writeFooterAndClose() {
+	public void writeFooterAndClose() {
 		// TODO Auto-generated method stub
-		return null;
+
+	}
+
+	@Override
+	public void writeSentence(Sentence sentence) throws IOException {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

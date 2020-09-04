@@ -1,5 +1,7 @@
 package com.demo.sentence;
 
+import java.io.IOException;
+
 import com.demo.sentence.in.SentenceScanner;
 import com.demo.sentence.out.XMLSentenceWriter;
 
@@ -18,9 +20,11 @@ public class Processor {
 		
 	}
 
-	private void process() {
+	private void process() throws IOException {
 		SentenceScanner sentenceScanner = new SentenceScanner(System.in);
 		XMLSentenceWriter sentenceWriter = new XMLSentenceWriter(System.out);
+		
+		sentenceWriter.writeHeader();
 		
 		while(sentenceScanner.hasMoreElements()) {
 			sentenceWriter.writeSentence(sentenceScanner.nextElement());

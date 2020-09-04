@@ -25,9 +25,7 @@ public class SentenceScanner implements Enumeration<Sentence> {
 	public SentenceScanner(InputStream is) {
 		super();
 		this.inputStream = is;
-
 		mainScanner = new Scanner(inputStream).useDelimiter(sentence_scanner_pattern);
-
 	}
 
 	@Override
@@ -43,11 +41,8 @@ public class SentenceScanner implements Enumeration<Sentence> {
 	@Override
 	public Sentence nextElement() {
 		String line = mainScanner.next();
-		System.out.println("\"" + line + "\"");
 		Scanner innerScanner = new Scanner(line).useDelimiter(word_scanner_pattern);
 		
-		//System.out.println(innerScanner.delimiter().toString());
-
 		List<String> words = new ArrayList<>();
 		innerScanner.tokens().forEach(words::add);
 		innerScanner.close();
