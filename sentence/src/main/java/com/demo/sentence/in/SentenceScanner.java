@@ -14,31 +14,21 @@ public class SentenceScanner implements Enumeration<Sentence> {
 
 	private InputStream inputStream;
 	private Scanner mainScanner;
-	private static final String pattern = "\\s*!+|\\?+|\\.+\\s*";
+	private static final String sentence_scanner_pattern = "\\s*!+|\\?+|\\.+\\s*";
+	private static final String word_scanner_pattern = "[\\p{javaWhitespace},()]+";
 
 	public SentenceScanner(String input) {
 		super();
-		mainScanner = new Scanner(input).useDelimiter(pattern );
+		mainScanner = new Scanner(input == null ? "" : input).useDelimiter(sentence_scanner_pattern );
 	}
 
 	public SentenceScanner(InputStream is) {
 		super();
 		this.inputStream = is;
 
-		mainScanner = new Scanner(inputStream).useDelimiter(pattern);
-		
-		/*
-		 * while(mainScanner.hasNext()) { String line = mainScanner.next();
-		 * System.out.println("\"" + line + "\""); Scanner innerScanner = new
-		 * Scanner(line);
-		 * 
-		 * List<String> words = new ArrayList<>();
-		 * innerScanner.tokens().forEach(words::add); innerScanner.close();
-		 * 
-		 * Collections.sort(words);
-		 * 
-		 * Sentence sentence = new Sentence(words); }
-		 */ }
+		mainScanner = new Scanner(inputStream).useDelimiter(sentence_scanner_pattern);
+
+	}
 
 	@Override
 	public boolean hasMoreElements() {
@@ -54,7 +44,9 @@ public class SentenceScanner implements Enumeration<Sentence> {
 	public Sentence nextElement() {
 		String line = mainScanner.next();
 		System.out.println("\"" + line + "\"");
-		Scanner innerScanner = new Scanner(line).useDelimiter("\\s*,|\\(+|\\)+\\s*");
+		Scanner innerScanner = new Scanner(line).useDelimiter(word_scanner_pattern);
+		
+		//System.out.println(innerScanner.delimiter().toString());
 
 		List<String> words = new ArrayList<>();
 		innerScanner.tokens().forEach(words::add);

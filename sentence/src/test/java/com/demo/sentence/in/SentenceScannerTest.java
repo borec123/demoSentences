@@ -24,8 +24,19 @@ class SentenceScannerTest {
 	@Test
 	void testSentence1() {
 		List<Sentence> list = test("  Mary   had a little  lamb  . " + "\n" + "\n"
-				+ "				  Peter   called for the wolf   ,  and Aesop came ."
+				+ "				  Peter   called for the wolf   ,  ((and Aesop came .\r\n"
 				+ "				 Cinderella  likes shoes..");
+		
+		assertEquals(3, list.size());
+		assertEquals("a,had,lamb,little,Mary,", list.get(0).toString());
+		assertEquals("Aesop,and,called,came,for,Peter,the,wolf,", list.get(1).toString());
+		assertEquals("Cinderella,likes,shoes,", list.get(2).toString());
+	}
+	
+	@Test
+	void testSentence2() {
+		List<Sentence> list = test(" Mary had a little lamb. Peter called for the wolf, and Aesop came.\r\n" + 
+				"Cinderella likes shoes.");
 		
 		assertEquals(3, list.size());
 		assertEquals("a,had,lamb,little,Mary,", list.get(0).toString());

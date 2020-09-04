@@ -16,23 +16,6 @@ public class Processor {
 			ex.printStackTrace();
 		}
 		
-	     
-		/*
-		 * Scanner s = new Scanner(System.in).useDelimiter("\\s*[\\.!\\?]\\s*");
-		 * while(s.hasNext()) { String line = s.next(); System.out.println("\"" + line +
-		 * "\""); Scanner innerScanner = new Scanner(line);
-		 * 
-		 * List<String> words = new ArrayList<>();
-		 * innerScanner.tokens().forEach(words::add); innerScanner.close();
-		 * 
-		 * Collections.sort(words);
-		 * 
-		 * Sentence sentence = new Sentence(words);
-		 * 
-		 * words.forEach(w -> System.out.println("<word>" + w + "</word>")); }
-		 * s.close();
-		 */
-
 	}
 
 	private void process() {
